@@ -1,0 +1,54 @@
+name: quay-pulls-badge
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  badge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    env:
+      QUAY_ORG: ${{ vars.QUAY_ORG }}
+    steps:
+      # distro list from main (images/<distro>/), badge files on the badges branch
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: src
+      # Work on the badges branch itself so other badge writers' files
+      # (rescan.yml's cve-*.json) survive this workflow's commit.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: badges
+          path: out
+
+      # Quay only exposes ~3 months of daily pull stats (no all-time counter),
+      # so the badge shows pulls over that window. One badge per distro repo.
+      - name: Generate badge JSON
+        run: |
+          mkdir -p out/badges
+          # src/images/<distro>/<version>/env -> <distro>
+          for DISTRO in $(find src/images -mindepth 3 -maxdepth 3 -name env | cut -d/ -f3 | sort -u); do
+            pulls=$(curl -sf "https://quay.io/api/v1/repository/${QUAY_ORG}/${DISTRO}-hardened-bootc?includeStats=true" \
+              | jq '[.stats[].count] | add // 0') || pulls=0
+            jq -n --argjson pulls "${pulls}" \
+              '{schemaVersion: 1, label: "quay pulls/3mo", message: ($pulls | tostring), namedLogo: "redhat", color: "red"}' \
+              > "out/badges/quay-${DISTRO}-hardened-bootc.json"
+          done
+
+      # Published to the orphan "badges" branch, NOT main: pushes to main
+      # trigger build.yml and are gated by branch protection.
+      - name: Publish to badges branch
+        working-directory: out
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add badges/
+          git diff --cached --quiet && { echo "badges unchanged"; exit 0; }
+          git commit -m "chore: update Quay pulls badge"
+          git push origin badges || { git pull --rebase origin badges && git push origin badges; }

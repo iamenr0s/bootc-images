@@ -1,0 +1,2 @@
+# Base: published docker-hardened-images "full" flavor (has dnf + shell).
+BASE_IMAGE=quay.io/iamenr0s/fedora-hardened:43-full

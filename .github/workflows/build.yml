@@ -1,0 +1,119 @@
+name: build
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 5 * * *"   # after docker-hardened-images' 02:17 UTC nightly
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # One entry per images/<distro>/<version>/env: adding a distro is adding a file.
+  matrix:
+    runs-on: ubuntu-24.04
+    outputs:
+      images: ${{ steps.list.outputs.images }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: list
+        run: |
+          images="$(find images -mindepth 3 -maxdepth 3 -name env | sort \
+            | jq -Rnc '[inputs | split("/") | {distro: .[1], version: .[2]}]')"
+          echo "images=${images}" >> "${GITHUB_OUTPUT}"
+
+  build:
+    needs: matrix
+    name: build (${{ matrix.image.distro }} ${{ matrix.image.version }}, ${{ matrix.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ${{ fromJSON(needs.matrix.outputs.images) }}
+        arch: [amd64, arm64]
+    # native runners per arch: no qemu emulation in the build
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    # registry secrets live in the "release" environment (deployment branches:
+    # main only); PR builds get no environment and therefore no credentials
+    environment: ${{ github.event_name != 'pull_request' && 'release' || '' }}
+    env:
+      DISTRO: ${{ matrix.image.distro }}
+      VERSION: ${{ matrix.image.version }}
+      ARCH: ${{ matrix.arch }}
+      LOCAL: localhost/${{ matrix.image.distro }}-hardened-bootc:${{ matrix.image.version }}
+      DOCKERHUB_REPO: docker.io/${{ vars.DOCKERHUB_ORG }}/${{ matrix.image.distro }}-hardened-bootc
+      QUAY_REPO: quay.io/${{ vars.QUAY_ORG }}/${{ matrix.image.distro }}-hardened-bootc
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # rootful: bootc install and the boot test need root's container storage
+      - name: Build
+        run: sudo scripts/build.sh "${DISTRO}" "${VERSION}" "${LOCAL}"
+
+      # gate: no fixable High/Critical (grype + trivy), same policy as docker-hardened-images
+      - name: Vulnerability scan
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo --preserve-env=GH_TOKEN scripts/install-scanners.sh
+          sudo podman save --format oci-dir -o "${RUNNER_TEMP}/oci" "${LOCAL}"
+          sudo chown -R "$(id -u)" "${RUNNER_TEMP}/oci"
+          scripts/scan.sh "${RUNNER_TEMP}/oci"
+
+      # ponytail: boot test on amd64 only (arm64 runners have no KVM); add an
+      # aarch64 TCG boot if arm64-only regressions show up.
+      - name: Boot test
+        if: matrix.arch == 'amd64'
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq --no-install-recommends qemu-system-x86 ovmf
+          sudo scripts/boot-test.sh "${LOCAL}"
+
+      - name: Push per-arch tags (Docker Hub + Quay)
+        if: github.event_name != 'pull_request'
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+          QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        run: |
+          echo "${DOCKERHUB_TOKEN}" | sudo podman login docker.io -u "${DOCKERHUB_USERNAME}" --password-stdin
+          echo "${QUAY_TOKEN}" | sudo podman login quay.io -u "${QUAY_USERNAME}" --password-stdin
+          for repo in "${DOCKERHUB_REPO}" "${QUAY_REPO}"; do
+            sudo podman push "${LOCAL}" "docker://${repo}:${VERSION}-${ARCH}"
+          done
+
+  manifest:
+    needs: [matrix, build]
+    if: github.event_name != 'pull_request'
+    name: manifest (${{ matrix.image.distro }} ${{ matrix.image.version }})
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ${{ fromJSON(needs.matrix.outputs.images) }}
+    runs-on: ubuntu-24.04
+    environment: release
+    env:
+      VERSION: ${{ matrix.image.version }}
+      DOCKERHUB_REPO: docker.io/${{ vars.DOCKERHUB_ORG }}/${{ matrix.image.distro }}-hardened-bootc
+      QUAY_REPO: quay.io/${{ vars.QUAY_ORG }}/${{ matrix.image.distro }}-hardened-bootc
+    steps:
+      - name: Push multi-arch manifest (Docker Hub + Quay)
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+          QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        run: |
+          echo "${DOCKERHUB_TOKEN}" | podman login docker.io -u "${DOCKERHUB_USERNAME}" --password-stdin
+          echo "${QUAY_TOKEN}" | podman login quay.io -u "${QUAY_USERNAME}" --password-stdin
+          for repo in "${DOCKERHUB_REPO}" "${QUAY_REPO}"; do
+            podman manifest create "${repo}:${VERSION}" \
+              "docker://${repo}:${VERSION}-amd64" "docker://${repo}:${VERSION}-arm64"
+            podman manifest push --all "${repo}:${VERSION}" "docker://${repo}:${VERSION}"
+          done
