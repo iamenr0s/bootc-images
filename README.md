@@ -1,4 +1,4 @@
-# bootc-images
+# BootC Images
 
 [![build](https://img.shields.io/github/actions/workflow/status/iamenr0s/bootc-images/build.yml?label=build&logo=github)](https://github.com/iamenr0s/bootc-images/actions/workflows/build.yml)
 [![rescan](https://img.shields.io/github/actions/workflow/status/iamenr0s/bootc-images/rescan.yml?label=rescan&logo=github)](https://github.com/iamenr0s/bootc-images/actions/workflows/rescan.yml)
