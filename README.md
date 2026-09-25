@@ -135,7 +135,8 @@ to Docker Hub and Quay.
 
 ### CI setup (one-time)
 
-1. Repository **variables**: `DOCKERHUB_ORG`, `QUAY_ORG`
+1. Optional repository **variables** `DOCKERHUB_ORG`, `QUAY_ORG`: registry namespaces.
+   Both default to the GitHub repository owner.
 2. Create a **`release` environment** (Settings -> Environments) holding the secrets
    `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `QUAY_USERNAME`, `QUAY_TOKEN`, with its
    **deployment branch policy restricted to `main`**. No other branch or workflow can
