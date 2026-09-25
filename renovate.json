@@ -1,6 +1,49 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    ":semanticCommits"
+  ],
+  "timezone": "Europe/London",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "vulnerabilityAlerts": {
+    "schedule": ["at any time"],
+    "labels": ["dependencies", "security"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Pinned scanner versions in scripts/install-scanners.sh (release tags are v-prefixed)",
+      "managerFilePatterns": ["/^scripts/install-scanners\\.sh$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n[A-Z_]+_VERSION=(?<currentValue>\\S+)"
+      ],
+      "extractVersionTemplate": "^v(?<version>.+)$"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "GitHub Actions: one weekly PR, SHA-pinned with version comments",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
+    },
+    {
+      "description": "Vulnerability scanners: grouped so the CVE gate is validated against both at once",
+      "matchDepNames": ["anchore/grype", "aquasecurity/trivy"],
+      "groupName": "vulnerability scanners"
+    },
+    {
+      "description": "Runner images: amd64 and arm64 must move together, but the arm64 label sits in a runs-on expression Renovate can't update. Bump both by hand.",
+      "matchDatasources": ["github-runners"],
+      "enabled": false
+    },
+    {
+      "description": "Automerge non-major updates once CI (build, CVE gate, boot test) is green",
+      "matchUpdateTypes": ["minor", "patch", "digest", "pinDigest"],
+      "automerge": true,
+      "platformAutomerge": true
+    }
   ]
 }
