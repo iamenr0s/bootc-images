@@ -2,7 +2,7 @@
 
 [![build](https://img.shields.io/github/actions/workflow/status/iamenr0s/bootc-images/build.yml?label=build&logo=github)](https://github.com/iamenr0s/bootc-images/actions/workflows/build.yml)
 [![rescan](https://img.shields.io/github/actions/workflow/status/iamenr0s/bootc-images/rescan.yml?label=rescan&logo=github)](https://github.com/iamenr0s/bootc-images/actions/workflows/rescan.yml)
-[![Dependabot](https://img.shields.io/badge/dependabot-enabled-brightgreen?logo=dependabot)](.github/dependabot.yml)
+[![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?logo=renovatebot)](renovate.json)
 [![License](https://img.shields.io/github/license/iamenr0s/bootc-images)](LICENSE)
 
 Bootable container images layered on
@@ -125,6 +125,15 @@ The same approach as docker-hardened-images:
 
 Scanners are pinned release binaries, verified against their published checksums
 (`scripts/install-scanners.sh`, no `curl | sh`).
+
+## Dependency updates
+
+[Renovate](renovate.json) runs weekly (Monday before 06:00 Europe/London; security
+fixes at any time). It keeps GitHub Actions SHA-pinned, bumps the pinned grype/trivy
+versions in `scripts/install-scanners.sh`, and automerges non-major updates once CI
+(build, CVE gate, boot test) is green. Runner images (`ubuntu-24.04[-arm]`) are
+bumped by hand so both architectures move together. Base images need no updates
+here: the nightly build always pulls the current docker-hardened-images tag.
 
 ## CI
 
