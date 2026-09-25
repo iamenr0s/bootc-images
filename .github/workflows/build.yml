@@ -46,8 +46,8 @@ jobs:
       VERSION: ${{ matrix.image.version }}
       ARCH: ${{ matrix.arch }}
       LOCAL: localhost/${{ matrix.image.distro }}-hardened-bootc:${{ matrix.image.version }}
-      DOCKERHUB_REPO: docker.io/${{ vars.DOCKERHUB_ORG }}/${{ matrix.image.distro }}-hardened-bootc
-      QUAY_REPO: quay.io/${{ vars.QUAY_ORG }}/${{ matrix.image.distro }}-hardened-bootc
+      DOCKERHUB_REPO: docker.io/${{ vars.DOCKERHUB_ORG || github.repository_owner }}/${{ matrix.image.distro }}-hardened-bootc
+      QUAY_REPO: quay.io/${{ vars.QUAY_ORG || github.repository_owner }}/${{ matrix.image.distro }}-hardened-bootc
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -100,8 +100,8 @@ jobs:
     environment: release
     env:
       VERSION: ${{ matrix.image.version }}
-      DOCKERHUB_REPO: docker.io/${{ vars.DOCKERHUB_ORG }}/${{ matrix.image.distro }}-hardened-bootc
-      QUAY_REPO: quay.io/${{ vars.QUAY_ORG }}/${{ matrix.image.distro }}-hardened-bootc
+      DOCKERHUB_REPO: docker.io/${{ vars.DOCKERHUB_ORG || github.repository_owner }}/${{ matrix.image.distro }}-hardened-bootc
+      QUAY_REPO: quay.io/${{ vars.QUAY_ORG || github.repository_owner }}/${{ matrix.image.distro }}-hardened-bootc
     steps:
       - name: Push multi-arch manifest (Docker Hub + Quay)
         env:

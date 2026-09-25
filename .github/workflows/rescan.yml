@@ -40,7 +40,7 @@ jobs:
       DISTRO: ${{ matrix.image.distro }}
       VERSION: ${{ matrix.image.version }}
       ARCH: ${{ matrix.arch }}
-      REF: quay.io/${{ vars.QUAY_ORG }}/${{ matrix.image.distro }}-hardened-bootc:${{ matrix.image.version }}-${{ matrix.arch }}
+      REF: quay.io/${{ vars.QUAY_ORG || github.repository_owner }}/${{ matrix.image.distro }}-hardened-bootc:${{ matrix.image.version }}-${{ matrix.arch }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
