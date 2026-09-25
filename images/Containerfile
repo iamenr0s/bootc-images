@@ -1,0 +1,20 @@
+# bootc image layered on a docker-hardened-images "full" image
+# (github.com/iamenr0s/docker-hardened-images). Shared by every distro:
+# BASE_IMAGE comes from images/<distro>/<version>/env via scripts/build.sh.
+# The hardened base supplies the minimal, patched userspace; common/bootc-setup.sh
+# adds the kernel, bootloader and ostree/bootc plumbing.
+# Build context: images/
+
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+COPY common/files/ /
+RUN --mount=type=bind,source=common/bootc-setup.sh,target=/tmp/bootc-setup.sh \
+    bash /tmp/bootc-setup.sh
+
+LABEL containers.bootc=1 \
+      ostree.bootable=1 \
+      org.opencontainers.image.description="bootc image layered on docker-hardened-images"
+ENV container=oci
+STOPSIGNAL SIGRTMIN+3
+CMD ["/sbin/init"]
