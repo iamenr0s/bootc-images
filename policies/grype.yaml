@@ -71,11 +71,12 @@ ignore:
     package: { name: libcap }
     reason: "CentOS Stream 10 el10_N mismatch: 2.69-7.el10 is newest on mirror (grype wants 0:2.69-7.el10_2.1). Review 2026-10-25."
 
-  # AlmaLinux/Rocky 10: RHEL fixed these in kernel 6.12.0-211.59.1.el10_2 (some in
-  # .58.1), but the rebuilds had not published it yet. Verified 2026-09-25 against the
-  # authoritative baseurls: repo.almalinux.org BaseOS tops out at 211.56.1,
-  # dl.rockylinux.org BaseOS at 211.58.1. Each ignore is pinned to the installed
-  # version, so it stops matching once the nightly rebuild picks up a newer kernel.
+  # AlmaLinux 10: RHEL fixed these in newer kernels (211.58.1 / .59.1 / .60.1),
+  # but AlmaLinux had not published them. Verified against repo.almalinux.org BaseOS:
+  # newest kernel-core 211.56.1 on 2026-09-25 and still on 2026-09-27. Each
+  # ignore is pinned to the installed version, so it stops matching once the
+  # nightly rebuild picks up a newer kernel. (Rocky's equivalent entries were
+  # removed 2026-09-27: dl.rockylinux.org now ships 211.60.1.)
   - vulnerability: CVE-2026-53266
     package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
     reason: "almalinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
@@ -232,123 +233,63 @@ ignore:
   - vulnerability: CVE-2026-72243
     package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
     reason: "almalinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-53266
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-53266
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-53266
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-53266
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64564
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64564
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64564
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64564
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-74569
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-74569
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-74569
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-74569
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-89846
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-89846
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-89846
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-89846
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-80844
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-80844
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-80844
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-80844
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64383
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64383
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64383
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-64383
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-81000
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-81000
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-81000
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-81000
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-63831
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-63831
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-63831
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-63831
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-68201
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-68201
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-68201
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-68201
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-72243
-    package: { name: kernel, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-72243
-    package: { name: kernel-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-72243
-    package: { name: kernel-modules, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
-  - vulnerability: CVE-2026-72243
-    package: { name: kernel-modules-core, version: "6.12.0-211.58.1.el10_2" }
-    reason: "rockylinux 10: fix 0:6.12.0-211.59.1.el10_2 not yet on the distro repo (verified 2026-09-25). Review 2026-10-09."
+  - vulnerability: CVE-2026-53203
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-53203
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-53203
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-53203
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68108
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68108
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68108
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68108
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68121
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68121
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68121
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-68121
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-80714
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-80714
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-80714
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-80714
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-89481
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-89481
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-89481
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-89481
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
