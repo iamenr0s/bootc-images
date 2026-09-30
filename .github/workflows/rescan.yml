@@ -101,22 +101,37 @@ jobs:
               core.warning(`grype failed without a report (registry/network error?): ${e}`);
               return;
             }
-            const vulns = (report.matches || [])
+            const vulns = [...new Set((report.matches || [])
               .filter(m => ['High', 'Critical'].includes(m.vulnerability.severity))
-              .map(m => `- ${m.vulnerability.id} (${m.vulnerability.severity}) in ${m.artifact.name} ${m.artifact.version}`)
-              .join('\n');
-            if (!vulns) return;  // scan failed for a non-finding reason
+              .map(m => `- ${m.vulnerability.id} (${m.vulnerability.severity}) in ${m.artifact.name} ${m.artifact.version}`))];
+            if (!vulns.length) return;  // scan failed for a non-finding reason
+            const repo = { owner: context.repo.owner, repo: context.repo.repo };
             // registry- and arch-agnostic title: one issue per distro+version
             const title = `CVEs found in ${process.env.DISTRO}-hardened-bootc:${process.env.VERSION}`;
-            const open = await github.rest.issues.listForRepo({
-              owner: context.repo.owner, repo: context.repo.repo,
-              state: 'open', labels: 'security'
+            const open = await github.paginate(github.rest.issues.listForRepo, {
+              ...repo, state: 'open', labels: 'security', per_page: 100
             });
-            if (!open.data.some(i => i.title === title)) {
+            const existing = open.find(i => i.title === title);
+            if (!existing) {
               await github.rest.issues.create({
-                owner: context.repo.owner, repo: context.repo.repo,
-                title, labels: ['security'],
-                body: `Fixable High/Critical vulnerabilities detected (${process.env.REF}):\n\n${vulns}\n\nThe nightly rebuild should resolve these; investigate if they persist. If a fix isn't installable from the distro repos, add a reasoned, dated ignore to policies/grype.yaml.`
+                ...repo, title, labels: ['security'],
+                body: `Fixable High/Critical vulnerabilities detected (${process.env.REF}):\n\n${vulns.join('\n')}\n\nThe nightly rebuild should resolve these; investigate if they persist. If a fix isn't installable from the distro repos, add a reasoned, dated ignore to policies/grype.yaml.`
+              });
+              return;
+            }
+            // Issue already open: comment only findings not yet reported in
+            // its body or comments, so later CVEs don't go unnoticed.
+            // ponytail: amd64/arm64 legs run in parallel and can both post the
+            // same new line once; serialise with a concurrency group if that gets noisy.
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...repo, issue_number: existing.number, per_page: 100
+            });
+            const reported = [existing.body || '', ...comments.map(c => c.body || '')].join('\n');
+            const fresh = vulns.filter(v => !reported.includes(v));
+            if (fresh.length) {
+              await github.rest.issues.createComment({
+                ...repo, issue_number: existing.number,
+                body: `New fixable High/Critical vulnerabilities (${process.env.REF}):\n\n${fresh.join('\n')}`
               });
             }
 
