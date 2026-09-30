@@ -71,9 +71,9 @@ ignore:
     package: { name: libcap }
     reason: "CentOS Stream 10 el10_N mismatch: 2.69-7.el10 is newest on mirror (grype wants 0:2.69-7.el10_2.1). Review 2026-10-25."
 
-  # AlmaLinux 10: RHEL fixed these in newer kernels (211.58.1 / .59.1 / .60.1),
+  # AlmaLinux 10: RHEL fixed these in newer kernels (211.58.1 / .59.1 / .60.1 / .61.1),
   # but AlmaLinux had not published them. Verified against repo.almalinux.org BaseOS:
-  # newest kernel-core 211.56.1 on 2026-09-25 and still on 2026-09-27. Each
+  # newest kernel-core 211.56.1 on 2026-09-25, 2026-09-27 and 2026-09-30. Each
   # ignore is pinned to the installed version, so it stops matching once the
   # nightly rebuild picks up a newer kernel. (Rocky's equivalent entries were
   # removed 2026-09-27: dl.rockylinux.org now ships 211.60.1.)
@@ -293,3 +293,63 @@ ignore:
   - vulnerability: CVE-2026-89481
     package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
     reason: "almalinux 10: fix 0:6.12.0-211.60.1.el10_2 not yet on the distro repo (verified 2026-09-27). Review 2026-10-09."
+  - vulnerability: CVE-2026-89480
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-89480
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-89480
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-89480
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-89775
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-89775
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-89775
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-89775
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-80522
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-80522
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-80522
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-80522
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-74753
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-74753
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-74753
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-74753
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-64556
+    package: { name: kernel, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-64556
+    package: { name: kernel-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-64556
+    package: { name: kernel-modules, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+  - vulnerability: CVE-2026-64556
+    package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
