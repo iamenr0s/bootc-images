@@ -353,3 +353,23 @@ ignore:
   - vulnerability: CVE-2026-64556
     package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
     reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+
+  # AlmaLinux 10: RHEL fixed expat in 2.7.3-1.el10_2.5; AlmaLinux still ships
+  # .3 (verified 2026-10-01 via `dnf list --upgrades` in the base image). Pinned
+  # to the installed version, so it stops matching once AlmaLinux publishes.
+  - vulnerability: CVE-2026-66046
+    package: { name: expat, version: "2.7.3-1.el10_2.3" }
+    reason: "almalinux 10: fix 0:2.7.3-1.el10_2.5 not yet on the distro repo (verified 2026-10-01). Review 2026-10-11."
+  - vulnerability: CVE-2026-93990
+    package: { name: expat, version: "2.7.3-1.el10_2.3" }
+    reason: "almalinux 10: fix 0:2.7.3-1.el10_2.5 not yet on the distro repo (verified 2026-10-01). Review 2026-10-11."
+
+  # Fedora 43: urllib3 2.8.0 fixes these upstream, but the newest python3-urllib3
+  # in the Fedora 43 repos is 2.7.0-2.fc43 (verified 2026-10-01 via repoquery).
+  # Pulled in by cloud-init. Pinned to the installed version.
+  - vulnerability: GHSA-8988-9cw3-xx77
+    package: { name: urllib3, version: "2.7.0", type: python }
+    reason: "fedora 43: python3-urllib3 2.8.0 not yet in the distro repo (newest 2.7.0-2.fc43, verified 2026-10-01). Review 2026-10-11."
+  - vulnerability: GHSA-vxq7-64xx-v4gw
+    package: { name: urllib3, version: "2.7.0", type: python }
+    reason: "fedora 43: python3-urllib3 2.8.0 not yet in the distro repo (newest 2.7.0-2.fc43, verified 2026-10-01). Review 2026-10-11."
