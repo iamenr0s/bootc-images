@@ -58,6 +58,9 @@ ignore:
   - vulnerability: CVE-2026-11822
     package: { name: sqlite-libs }
     reason: "CentOS Stream 10 el10_N mismatch: 3.46.1-6.el10 is newest on mirror (grype wants 0:3.46.1-6.el10_2). Review 2026-10-25."
+  - vulnerability: CVE-2026-96512
+    package: { name: sudo }
+    reason: "CentOS Stream 10 el10_N mismatch: 1.9.17-10.p2.el10 is newest on mirror (grype wants 0:1.9.17-10.p2.el10_2.7; verified 2026-10-06). Review 2026-10-16."
   - vulnerability: CVE-2026-63388
     package: { name: libevent }
     reason: "CentOS Stream 10 el10_N mismatch: 2.1.13-1.el10 is newest on mirror (grype wants 0:2.1.13-1.el10_2). Review 2026-10-25."
@@ -353,6 +356,19 @@ ignore:
   - vulnerability: CVE-2026-64556
     package: { name: kernel-modules-core, version: "6.12.0-211.56.1.el10_2" }
     reason: "almalinux 10: fix 0:6.12.0-211.61.1.el10_2 not yet on the distro repo (verified 2026-09-30). Review 2026-10-09."
+
+  - vulnerability: CVE-2026-64034
+    package: { name: kernel, version: "6.12.0-211.61.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.62.1.el10_2 not yet on the distro repo (newest 211.61.1, verified 2026-10-06). Review 2026-10-16."
+  - vulnerability: CVE-2026-64034
+    package: { name: kernel-core, version: "6.12.0-211.61.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.62.1.el10_2 not yet on the distro repo (newest 211.61.1, verified 2026-10-06). Review 2026-10-16."
+  - vulnerability: CVE-2026-64034
+    package: { name: kernel-modules, version: "6.12.0-211.61.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.62.1.el10_2 not yet on the distro repo (newest 211.61.1, verified 2026-10-06). Review 2026-10-16."
+  - vulnerability: CVE-2026-64034
+    package: { name: kernel-modules-core, version: "6.12.0-211.61.1.el10_2" }
+    reason: "almalinux 10: fix 0:6.12.0-211.62.1.el10_2 not yet on the distro repo (newest 211.61.1, verified 2026-10-06). Review 2026-10-16."
 
   # AlmaLinux 10: RHEL fixed expat in 2.7.3-1.el10_2.5; AlmaLinux still ships
   # .3 (verified 2026-10-01 via `dnf list --upgrades` in the base image). Pinned
