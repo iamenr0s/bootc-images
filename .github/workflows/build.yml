@@ -90,7 +90,11 @@ jobs:
 
   manifest:
     needs: [matrix, build]
-    if: github.event_name != 'pull_request'
+    # Per-distro: one distro's failed build must not block publishing the others.
+    # Safe because per-arch tags are only pushed after scan + boot test pass, so a
+    # manifest always points at gated images (a failed distro re-points at its last
+    # good ones; `podman manifest create` fails if an arch tag was never pushed).
+    if: ${{ always() && needs.matrix.result == 'success' && github.event_name != 'pull_request' }}
     name: manifest (${{ matrix.image.distro }} ${{ matrix.image.version }})
     strategy:
       fail-fast: false
