@@ -73,6 +73,27 @@ ignore:
   - vulnerability: CVE-2026-4878
     package: { name: libcap }
     reason: "CentOS Stream 10 el10_N mismatch: 2.69-7.el10 is newest on mirror (grype wants 0:2.69-7.el10_2.1). Review 2026-10-25."
+  - vulnerability: CVE-2026-84782
+    package: { name: openssl }
+    reason: "CentOS Stream 10 el10_N mismatch: 1:3.5.8-1.el10 is newest on mirror (grype wants 1:3.5.8-2.el10_2; verified 2026-10-12). Review 2026-10-22."
+  - vulnerability: CVE-2026-84782
+    package: { name: openssl-fips-provider }
+    reason: "CentOS Stream 10 el10_N mismatch: 1:3.5.8-1.el10 is newest on mirror (grype wants 1:3.5.8-2.el10_2; verified 2026-10-12). Review 2026-10-22."
+  - vulnerability: CVE-2026-84782
+    package: { name: openssl-libs }
+    reason: "CentOS Stream 10 el10_N mismatch: 1:3.5.8-1.el10 is newest on mirror (grype wants 1:3.5.8-2.el10_2; verified 2026-10-12). Review 2026-10-22."
+  - vulnerability: CVE-2026-19445
+    package: { name: python3 }
+    reason: "CentOS Stream 10 el10_N mismatch: 3.12.14-1.el10 is newest on mirror (grype wants 0:3.12.15-1.el10_2; verified 2026-10-12). Review 2026-10-22."
+  - vulnerability: CVE-2026-19445
+    package: { name: python3-libs }
+    reason: "CentOS Stream 10 el10_N mismatch: 3.12.14-1.el10 is newest on mirror (grype wants 0:3.12.15-1.el10_2; verified 2026-10-12). Review 2026-10-22."
+  - vulnerability: CVE-2026-19553
+    package: { name: python3 }
+    reason: "CentOS Stream 10 el10_N mismatch: 3.12.14-1.el10 is newest on mirror (grype wants 0:3.12.15-1.el10_2; verified 2026-10-12). Review 2026-10-22."
+  - vulnerability: CVE-2026-19553
+    package: { name: python3-libs }
+    reason: "CentOS Stream 10 el10_N mismatch: 3.12.14-1.el10 is newest on mirror (grype wants 0:3.12.15-1.el10_2; verified 2026-10-12). Review 2026-10-22."
 
   # AlmaLinux 10: RHEL fixed these in newer kernels (211.58.1 / .59.1 / .60.1 / .61.1),
   # but AlmaLinux had not published them. Verified against repo.almalinux.org BaseOS:
