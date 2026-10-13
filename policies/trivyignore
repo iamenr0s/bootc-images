@@ -1,0 +1,9 @@
+# pcre2 10.44-1.el10.3 (AlmaLinux 10): trivy wants 10.44-1.5.el10_2, not published
+# on the distro repo (CI run 38471554709, 2026-10-13). Expires with the grype review date.
+CVE-2026-103111 exp:2026-10-23
+CVE-2026-86145 exp:2026-10-23
+CVE-2026-89156 exp:2026-10-23
+CVE-2026-89157 exp:2026-10-23
+CVE-2026-89158 exp:2026-10-23
+CVE-2026-89160 exp:2026-10-23
+CVE-2026-89161 exp:2026-10-23

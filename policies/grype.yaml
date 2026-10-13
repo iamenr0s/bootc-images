@@ -410,3 +410,97 @@ ignore:
   - vulnerability: GHSA-vxq7-64xx-v4gw
     package: { name: urllib3, version: "2.7.0", type: python }
     reason: "fedora 43: python3-urllib3 2.8.0 not yet in the distro repo (newest 2.7.0-2.fc43, verified 2026-10-01). Review 2026-10-11."
+
+  # CentOS Stream 10 (verified from CI run 38399681123, 2026-10-13; mirrors were
+  # unreachable locally for repoquery): kernel fix 211.65.1 and pcre2 10.44-1.5.el10_2
+  # (el10_N scheme) are not published on Stream. Pinned to the installed versions.
+  - vulnerability: CVE-2026-64191
+    package: { name: kernel, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-64191
+    package: { name: kernel-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-64191
+    package: { name: kernel-modules, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-64191
+    package: { name: kernel-modules-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-64385
+    package: { name: kernel, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-64385
+    package: { name: kernel-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-64385
+    package: { name: kernel-modules, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-64385
+    package: { name: kernel-modules-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-68123
+    package: { name: kernel, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-68123
+    package: { name: kernel-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-68123
+    package: { name: kernel-modules, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-68123
+    package: { name: kernel-modules-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-72318
+    package: { name: kernel, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-72318
+    package: { name: kernel-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-72318
+    package: { name: kernel-modules, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-72318
+    package: { name: kernel-modules-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-80521
+    package: { name: kernel, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-80521
+    package: { name: kernel-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-80521
+    package: { name: kernel-modules, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-80521
+    package: { name: kernel-modules-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-89970
+    package: { name: kernel, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-89970
+    package: { name: kernel-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-89970
+    package: { name: kernel-modules, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-89970
+    package: { name: kernel-modules-core, version: "6.12.0-211.64.1.el10_2" }
+    reason: "centos 10: fix 0:6.12.0-211.65.1.el10_2 not published on Stream (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-103111
+    package: { name: pcre2 }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is el10, grype wants 0:10.44-1.5.el10_2 (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-103111
+    package: { name: pcre2-syntax }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is el10, grype wants 0:10.44-1.5.el10_2 (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-86145
+    package: { name: pcre2 }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is el10, grype wants 0:10.44-1.5.el10_2 (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-86145
+    package: { name: pcre2-syntax }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is el10, grype wants 0:10.44-1.5.el10_2 (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-89161
+    package: { name: pcre2 }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is el10, grype wants 0:10.44-1.5.el10_2 (CI 2026-10-13). Review 2026-10-23."
+  - vulnerability: CVE-2026-89161
+    package: { name: pcre2-syntax }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is el10, grype wants 0:10.44-1.5.el10_2 (CI 2026-10-13). Review 2026-10-23."

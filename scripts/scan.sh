@@ -24,6 +24,7 @@ grype "${GRYPE_SRC}" \
 echo "==> trivy"
 trivy image \
   --config "${ROOT}/policies/trivy.yaml" \
+  --ignorefile "${ROOT}/policies/trivyignore" \
   --severity HIGH,CRITICAL \
   --ignore-unfixed \
   --exit-code 1 \
