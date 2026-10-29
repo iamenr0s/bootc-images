@@ -504,3 +504,14 @@ ignore:
   - vulnerability: CVE-2026-89161
     package: { name: pcre2-syntax }
     reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is el10, grype wants 0:10.44-1.5.el10_2 (CI 2026-10-13). Review 2026-10-23."
+
+  # CI run 40866416478, 2026-10-29.
+  - vulnerability: CVE-2026-111497
+    package: { name: libbrotli }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is 1.1.0-8.el10, grype wants 0:1.1.0-8.el10_2.1 (CI 2026-10-29). Review 2026-11-08."
+  - vulnerability: CVE-2026-114406
+    package: { name: ca-certificates }
+    reason: "CentOS Stream 10 el10_N mismatch: newest on mirror is 2026.2.90_v9.0.316-100.0.el10, grype wants 0:2026.2.92_v9.0.319-100.3.el10_2 (CI 2026-10-29). Review 2026-11-08."
+  - vulnerability: GHSA-3jp2-3mrg-2vxc
+    package: { name: oauthlib, version: "3.3.1", type: python }
+    reason: "fedora 44: oauthlib 4.0.0 not in the distro repo (installed python3-oauthlib 3.3.1-1.fc44; CI 2026-10-29). Review 2026-11-08."
