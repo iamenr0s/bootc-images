@@ -515,3 +515,21 @@ ignore:
   - vulnerability: GHSA-3jp2-3mrg-2vxc
     package: { name: oauthlib, version: "3.3.1", type: python }
     reason: "fedora 44: oauthlib 4.0.0 not in the distro repo (installed python3-oauthlib 3.3.1-1.fc44; CI 2026-10-29). Review 2026-11-08."
+
+  # Build runs since 2026-10-31 (GHSA published 2026-10-30). Fedora: mdapi + Bodhi
+  # show no oauthlib 4.0.0 for f43/f44, verified 2026-11-03. Pinned per release.
+  - vulnerability: GHSA-7984-qgvg-3j9c
+    package: { name: oauthlib, version: "3.3.1", type: python }
+    reason: "fedora 44: oauthlib 4.0.0 not in the distro repo (newest 3.3.1-1.fc44, verified 2026-11-03). Review 2026-11-13."
+  - vulnerability: GHSA-7984-qgvg-3j9c
+    package: { name: oauthlib, version: "3.2.2", type: python }
+    reason: "fedora 43: oauthlib 4.0.0 not in the distro repo (newest 3.2.2-10.fc43, verified 2026-11-03). Review 2026-11-13."
+
+  # Rescan 2026-11-03: not yet hit by a build. Pinned so AlmaLinux/Rocky, which do
+  # receive the el10_2.2 fix, are never masked.
+  - vulnerability: CVE-2026-97687
+    package: { name: python3-urllib3, version: "1.26.19-4.el10" }
+    reason: "CentOS Stream 10 el10_N mismatch: 1.26.19-4.el10 is newest on mirror, RHEL fix is 0:1.26.19-4.el10_2.2 (verified 2026-11-03). Review 2026-11-13."
+  - vulnerability: CVE-2026-97689
+    package: { name: python3-urllib3, version: "1.26.19-4.el10" }
+    reason: "CentOS Stream 10 el10_N mismatch: 1.26.19-4.el10 is newest on mirror, RHEL fix is 0:1.26.19-4.el10_2.2 (verified 2026-11-03). Review 2026-11-13."
