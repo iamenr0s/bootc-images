@@ -7,3 +7,16 @@ CVE-2026-89157 exp:2026-10-23
 CVE-2026-89158 exp:2026-10-23
 CVE-2026-89160 exp:2026-10-23
 CVE-2026-89161 exp:2026-10-23
+
+# Go modules compiled into RPM-owned podman/skopeo/quadlet on CentOS Stream 10: trivy
+# cannot map the RPM DB there ("Unsupported os family"), so it flags them. Fix only via
+# a distro rebuild (CI run 42684998309, 2026-11-09). Expires with the grype review date.
+CVE-2026-116587 exp:2026-11-23
+CVE-2026-17106 exp:2026-11-23
+CVE-2026-56854 exp:2026-11-23
+CVE-2026-56864 exp:2026-11-23
+CVE-2026-78661 exp:2026-11-23
+CVE-2026-56851 exp:2026-11-23
+CVE-2026-84304 exp:2026-11-23
+CVE-2026-57231 exp:2026-11-23
+CVE-2026-111943 exp:2026-11-23
