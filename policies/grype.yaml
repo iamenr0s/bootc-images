@@ -533,3 +533,120 @@ ignore:
   - vulnerability: CVE-2026-97689
     package: { name: python3-urllib3, version: "1.26.19-4.el10" }
     reason: "CentOS Stream 10 el10_N mismatch: 1.26.19-4.el10 is newest on mirror, RHEL fix is 0:1.26.19-4.el10_2.2 (verified 2026-11-03). Review 2026-11-13."
+
+  # Rescan 2026-11-15: RHEL el10_3 fixes (kernel, krb5, glibc, ...) not yet published on the
+  # AlmaLinux/Rocky/CentOS mirrors (verified 2026-11-15). Review 2026-11-29.
+  - vulnerability: CVE-2026-107364
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-108472
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112315
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112316
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112317
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112318
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112319
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112320
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112321
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112322
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-112323
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-118380
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-118669
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-119079
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-19685
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-33818
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-41567
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-52929
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-52952
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-53615
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-56853
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-56858
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-56860
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-56862
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-64303
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-71199
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-71200
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-72319
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-74860
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-80951
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-81003
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-84042
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-86140
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-89479
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-90008
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-98318
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-99152
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+  - vulnerability: CVE-2026-99153
+    package: { type: rpm }
+    reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
