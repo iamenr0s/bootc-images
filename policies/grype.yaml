@@ -650,3 +650,51 @@ ignore:
   - vulnerability: CVE-2026-99153
     package: { type: rpm }
     reason: "EL10 el10_3 fix not yet on distro mirror (verified 2026-11-15). Review 2026-11-29."
+
+  # Build 2026-11-23: CentOS Stream 10 High findings whose RHEL fix is el10_3. `dnf repoquery`
+  # against live Stream 10 repos shows the installed builds are newest (verified 2026-11-23).
+  - vulnerability: CVE-2026-12064
+    package: { name: curl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-12064
+    package: { name: libcurl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-78669
+    package: { name: skopeo }
+    reason: "CentOS Stream 10 el10_N mismatch: 1.24.0-3.el10 is newest on mirror (grype wants 3:1.24.1-1.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-8286
+    package: { name: curl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-8286
+    package: { name: libcurl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-8458
+    package: { name: curl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-8458
+    package: { name: libcurl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-8927
+    package: { name: curl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-8927
+    package: { name: libcurl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-92392
+    package: { name: curl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-92392
+    package: { name: libcurl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-9547
+    package: { name: curl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-9547
+    package: { name: libcurl }
+    reason: "CentOS Stream 10 el10_N mismatch: 8.12.1-9.el10 is newest on mirror (grype wants 0:8.12.1-9.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-97031
+    package: { name: podman }
+    reason: "CentOS Stream 10 el10_N mismatch: 6.1.0-3.el10 is newest on mirror (grype wants 7:6.1.4-1.el10_3). Review 2026-12-07."
+  - vulnerability: CVE-2026-97031
+    package: { name: skopeo }
+    reason: "CentOS Stream 10 el10_N mismatch: 1.24.0-3.el10 is newest on mirror (grype wants 3:1.24.1-1.el10_3). Review 2026-12-07."
