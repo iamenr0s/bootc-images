@@ -6,7 +6,7 @@ set -euo pipefail
 
 # Bumped by Renovate (see customManagers in renovate.json).
 # renovate: datasource=github-releases depName=anchore/grype
-GRYPE_VERSION=0.121.3
+GRYPE_VERSION=0.122.1
 # renovate: datasource=github-releases depName=aquasecurity/trivy
 TRIVY_VERSION=0.76.2
 BIN="${1:-/usr/local/bin}"
